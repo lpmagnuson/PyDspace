@@ -19,10 +19,10 @@ for item in file_list:
   fd = file(SRC_DIR + '/' + item, 'r')
   reader = MARCReader(fd)
   for record in reader:
-    id = collection = dccontributoradvisor = dccontributorauthor = dccontributorcommitteeMember = dccontributordepartment = dcdatecopyright = dcdateissued = dcdescription = dcdescriptionabstract = dcdescriptiondegree = dcdescriptionstatementofresponsibility = dcformatextent = dclanguageiso = dcpublisher = dcrights = dcrightslicense = dcrightsuri = dcsubject = dcsubjectother = dctitle = dctype = ''
+    dsid = collection = dccontributoradvisor = dccontributorauthor = dccontributorcommitteeMember = dccontributordepartment = dcdatecopyright = dcdateissued = dcdescription = dcdescriptionabstract = dcdescriptiondegree = dcdescriptionstatementofresponsibility = dcformatextent = dclanguageiso = dcpublisher = dcrights = dcrightslicense = dcrightsuri = dcsubject = dcsubjectother = dctitle = dctype = ''
 
      # online_identifier
-    id = ('+')
+    dsid = ('+')
     
     # collection
     collection = ('')
@@ -101,5 +101,5 @@ for item in file_list:
     # dc.type
     dctype = ('Thesis')
        
-    csv_out.writerow([id, collection, dccontributoradvisor, dccontributorauthor, dccontributorcommitteeMember, dccontributordepartment, dcdatecopyright, dcdateissued, dcdescription, dcdescriptionabstract, dcdescriptiondegree, dcdescriptionstatementofresponsibility, dcformatextent, dclanguageiso, dcpublisher, dcrightslicense, dcrightsuri, dcsubject, dcsubjectother, dctitle, dctype])
+    csv_out.writerow([dsid, collection, dccontributoradvisor, dccontributorauthor, dccontributorcommitteeMember, dccontributordepartment, dcdatecopyright, dcdateissued, dcdescription, dcdescriptionabstract, dcdescriptiondegree, dcdescriptionstatementofresponsibility, dcformatextent, dclanguageiso, dcpublisher, dcrightslicense, dcrightsuri, dcsubject, dcsubjectother, dctitle, dctype])
   fd.close()
