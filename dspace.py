@@ -32,31 +32,31 @@ for item in file_list:
     
     # dc.contributor.author
     if record['100'] is not None:
-      dccontributorauthor = record['100']['a']
+      dccontributorauthor = record['100']['a'].rsplit('.', 1)[0]
     elif record['110'] is not None:
-      dccontributorauthor = record['110']['a']
+      dccontributorauthor = record['110']['a'].rsplit('.', 1)[0]
     elif record['700'] is not None:
-      dccontributorauthor = record['700']['a']
+      dccontributorauthor = record['700']['a'].rsplit('.', 1)[0]
     elif record['710'] is not None:
-      dccontributorauthor = record['710']['a']
+      dccontributorauthor = record['710']['a'].rsplit('.', 1)[0]
       
     # dc.contributor.committeeMember
     dccontributorcommitteeMember = ''
       
     # dc.contributor.department
     if record ['690']['x'] is not None:
-      dccontributordepartment = ('California State University, Northridge.  Department of ') + record['690']['x']
+      dccontributordepartment = ('California State University, Northridge.  Department of ') + record['690']['x'].rsplit('.', 1)[0]
     
     # dc.date.copyright
     if record ['260']['c'] is not None:
-      dcdatecopyright = record['260']['c']
+      dcdatecopyright = record['260']['c'].rsplit('.', 1)[0]
        
     # dc.date.issued
     dcdateissued = ''
       
     # dc.description
     if record ['504'] is not None:
-      dcdescription = record['504']['a']
+      dcdescription = record['504']['a'].rsplit('.', 1)[0]
     
     # dc.description.abstract
     dcdescriptionabstract = ''
@@ -67,7 +67,7 @@ for item in file_list:
     
     # dc.description.statementofresponsibility
     if record ['245']['c'] is not None:
-      dcdescriptionstatementofresponsibility = record['245']['c']
+      dcdescriptionstatementofresponsibility = record['245']['c'].rsplit('.', 1)[0]
     
     #= dc.format.extent 
     dcformatextent = ''
