@@ -13,7 +13,7 @@ file_list = filter(lambda x: search('.mrc', x), listdir(SRC_DIR))
 
 csv_out = csv.writer(open('output/theses.txt', 'w'), delimiter = '\t', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
 
-csv_out.writerow(['id','collection','dc.contributor.advisor','dc.contributor.author','dc.contributor.committeeMember','dc.contributor.department','dc.date.copyright','dc.dateissued','dc.description','dc.description.abstract','dc.description.degree','dc.description.statementofresponsibility','dc.format.extent','dc.language.iso','dc.publisher','dc.rights','dc.rights.license','dc.rights.uri','dc.subject','dc.subject.other','dc.title','dc.type'])
+csv_out.writerow(['id','collection','dc.contributor.advisor','dc.contributor.author','dc.contributor.committeeMember','dc.contributor.department','dc.date.copyright','dc.dateissued','dc.description','dc.description.abstract','dc.description.degree','dc.description.statementofresponsibility','dc.format.extent','dc.language.iso','dc.publisher','dc.rights.license','dc.rights.uri','dc.subject','dc.subject.other','dc.title','dc.type'])
      
 for item in file_list:
   fd = file(SRC_DIR + '/' + item, 'r')
@@ -25,7 +25,7 @@ for item in file_list:
     id = ('+')
     
     # collection
-    collection = ('10211.2/286')
+    collection = ('')
     
     # dc.contributor.advisor
     dccontributoradvisor = ''
@@ -52,8 +52,7 @@ for item in file_list:
       dcdatecopyright = record['260']['c']
        
     # dc.date.issued
-    if record ['260']['c'] is not None:
-      dcdatecopyright = record['260']['c']
+    dcdateissued = ''
       
     # dc.description
     if record ['504'] is not None:
@@ -65,10 +64,6 @@ for item in file_list:
     # dc.description.degree
     if record['502'] is not None:
       dcdescriptiondegree = record['502']['a'][record['502']['a'].find("(")+1:record['502']['a'].find(")")]
-    
-	#record ['502']['a'] is not None:
-      #sep = '('
-      #dcdescriptiondegree = record['502']['a'].split(sep, 3)[-1]
     
     # dc.description.statementofresponsibility
     if record ['245']['c'] is not None:
@@ -84,11 +79,8 @@ for item in file_list:
     if record['260'] is not None:
       dcpublisher = record['260']['b']
     
-    # dc.rights 
-    dcrights = ('California State University, Northridge theses are protected by copyright. Access restricted to CSUN users only.')
-    
     # dc.rights.license
-    dcrightslicense = ('')
+    dcrightslicense = ('By signing and submitting this license, you the author grant permission to CSUN Graduate Studies to submit your thesis or dissertation, and any additional associated files you provide, to CSUN ScholarWorks, the institutional repository of the California State University, Northridge, on your behalf.You grant to CSUN ScholarWorks the non-exclusive right to reproduce and/or distribute your submission worldwide in electronic or any medium for non-commercial, academic purposes.  You agree that CSUN ScholarWorks may, without changing the content, translate the submission to any medium or format, as well as keep more than one copy, for the purposes of security, backup and preservation.  You represent that the submission is your original work, and that you have the right to grant the rights contained in this license.  You also represent that your submission does not, to the best of your knowledge, infringe upon anyone\'s copyright.  If the submission contains material for which you do not hold copyright, or for which the intended use is not permitted, or which does not reasonably fall under the guidelines of fair use, you represent that you have obtained the unrestricted permission of the copyright owner to grant CSUN ScholarWorks the rights required by this license, and that such third-party owned material is clearly identified and acknowledged within the text or content of the submission.  If the submission is based upon work that has been sponsored or supported by an agency or organization other than the California State University, Northridge, you represent that you have fulfilled any right of review or other obligations required by such contract or agreement.  CSUN ScholarWorks will clearly identify your name(s) as the author(s) or owner(s) of the submission, and will not make any alterations, other than those allowed by this license, to your submission.')
     
     #dc.rights.uri
     dcrightsuri = ('http://scholarworks.csun.edu//handle/10211.2/286')
@@ -97,16 +89,17 @@ for item in file_list:
     dcsubject = ''
     
     #dc.subject.other
-    dcsubjectother = ''
+    if record['690'] is not None:
+      dcsubjectother = record['690']['a'] + " -- " + record['690']['z'] + " -- " + record['690']['x']
       
     # dc.title
-    if record['245'] is not None:
-      dctitle = record['245']['a']
-      if record['245']['b'] is not None:
-        dctitle = dctitle + " " + record['245']['b']
+    if record['245']['b'] is not None:
+      dctitle = record['245']['a'] + " " + record['245']['b']
+    if record['245']['a'] is not None:
+      dctitle = record['245']['a'].rsplit('/', 1)[0]
 
     # dc.type
     dctype = ('Thesis')
        
-    csv_out.writerow([id, collection, dccontributoradvisor, dccontributorauthor, dccontributorcommitteeMember, dccontributordepartment, dcdatecopyright, dcdateissued, dcdescription, dcdescriptionabstract, dcdescriptiondegree, dcdescriptionstatementofresponsibility, dcformatextent, dclanguageiso, dcpublisher, dcrights, dcrightslicense, dcrightsuri, dcsubject, dcsubjectother, dctitle, dctype])
+    csv_out.writerow([id, collection, dccontributoradvisor, dccontributorauthor, dccontributorcommitteeMember, dccontributordepartment, dcdatecopyright, dcdateissued, dcdescription, dcdescriptionabstract, dcdescriptiondegree, dcdescriptionstatementofresponsibility, dcformatextent, dclanguageiso, dcpublisher, dcrightslicense, dcrightsuri, dcsubject, dcsubjectother, dctitle, dctype])
   fd.close()
