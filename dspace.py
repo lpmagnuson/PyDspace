@@ -11,7 +11,7 @@ SRC_DIR = 'marc/'
 # get a list of all .mrc files in source directory
 file_list = filter(lambda x: search('.mrc', x), listdir(SRC_DIR))
 
-csv_out = csv.writer(open('output/theses.txt', 'w'), delimiter = '\t', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
+csv_out = csv.writer(open('output/theses.txt', 'w'), delimiter = '\t', quotechar = '"', quoting = csv.QUOTE_ALL)
 
 csv_out.writerow(['id','collection','dc.contributor.advisor','dc.contributor.author','dc.contributor.committeeMember','dc.contributor.department','dc.date.copyright','dc.dateissued','dc.description','dc.description.abstract','dc.description.degree','dc.description.statementofresponsibility','dc.format.extent','dc.language.iso','dc.publisher','dc.rights.license','dc.rights.uri','dc.subject','dc.subject.other','dc.title','dc.type'])
      
