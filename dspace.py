@@ -48,7 +48,7 @@ for item in file_list:
       dccontributordepartment = ('California State University, Northridge.  Department of ') + record['690']['x'].rsplit('.', 1)[0]
     
     # dc.date.copyright
-    if record ['260']['c'] is not None:
+    if record ['260'] is not None:
       dcdatecopyright = record['260']['c'].rsplit('.', 1)[0]
        
     # dc.date.issued
@@ -64,7 +64,7 @@ for item in file_list:
     # dc.description.degree
     if record['502'] is not None:
       dcdescriptiondegree = record['502']['a'][record['502']['a'].find("(")+1:record['502']['a'].find(")")]
-    
+
     # dc.description.statementofresponsibility
     if record ['245']['c'] is not None:
       dcdescriptionstatementofresponsibility = record['245']['c'].rsplit('.', 1)[0]
